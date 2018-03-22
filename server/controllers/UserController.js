@@ -45,6 +45,12 @@ module.exports = {
       res.status(200).json({ message: "Success Read Profile", data })
     })
   },
+  getAllUser: function(req,res) {
+    User.find({},function(err,data) {
+      if(err) res.status(500).json(err)
+      res.status(200).json({ message: "Success Read All User", data })
+    })
+  },
   updateProfile: (req,res) => {
     User.findOne({_id: req.user._id},function(err,data) {
       if(err) return res.status(500).json({
