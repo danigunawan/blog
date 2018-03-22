@@ -9,6 +9,7 @@
         <authors></authors>
       </div>
     </div>
+    <button style="display:none" class="btn-check-login" @click="checkLogin"></button>
   </div>
 </template>
 

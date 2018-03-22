@@ -1,6 +1,6 @@
 <template >
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Medium Clone</a>
+     <router-link to="/" class="navbar-brand">Medium Clone</router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,6 +25,7 @@
         <button  @click="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
+      <button style="display: none" class="btn-check-login" @click="checkLogin"></button>
   </nav>
 </template>
 

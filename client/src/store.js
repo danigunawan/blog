@@ -2,8 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+let host = 'http://localhost:3000'
+const hostname = document.location.hostname
+if (hostname !== 'localhost') {
+  host = 'http://blog-api.geekosta.com'
+}
 const request = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: host
 })
 
 Vue.use(Vuex)

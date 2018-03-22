@@ -24,7 +24,15 @@ export default new Router({
     {
       path: '/articles/:id/edit',
       name: 'ArticleEdit',
-      component: EditStory
+      component: EditStory,
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.token
+        if (token !== undefined) {
+          next()
+        } else {
+          next('/')
+        }
+      }
     },
     {
       path: '/articles/author/:id',
@@ -34,12 +42,28 @@ export default new Router({
     {
       path: '/my-articles',
       name: 'MyStory',
-      component: MyStory
+      component: MyStory,
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.token
+        if (token !== undefined) {
+          next()
+        } else {
+          next('/')
+        }
+      }
     },
     {
       path: '/create-article',
       name: 'CreateStory',
-      component: CreateStory
+      component: CreateStory,
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.token
+        if (token !== undefined) {
+          next()
+        } else {
+          next('/')
+        }
+      }
     }
   ]
 })

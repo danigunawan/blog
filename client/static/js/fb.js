@@ -6,13 +6,12 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      $("#fb-button").hide();
       //testAPI();
       console.log(response)
       request.post('/users/signin',{ accessToken: response.authResponse.accessToken })
         .then(res =>{
           localStorage.token = res.data.token;
-          $('#login-check').click();
+          $('.btn-check-login').click();
         }).catch( err =>{
           console.log(err)
         })

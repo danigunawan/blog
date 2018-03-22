@@ -8,8 +8,13 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+let host = 'http://localhost:3000'
+const hostname = document.location.hostname
+if (hostname !== 'localhost') {
+  host = 'http://blog-api.geekosta.com'
+}
 Vue.prototype.$http = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: host
 })
 
 /* eslint-disable no-new */

@@ -7,7 +7,7 @@ if (hostname == 'localhost' || hostname == '127.0.0.1') {
 } else {
 
   var request = axios.create({
-    baseURL: 'http://todo-api.geekosta.com',
+    baseURL: 'http://blog-api.geekosta.com',
   });
 
 }
