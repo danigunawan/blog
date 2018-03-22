@@ -39,4 +39,26 @@ module.exports = {
       });
     });
   },
+  getProfile: function(req,res) {
+    User.findOne({_id: req.user._id},function(err,data) {
+      if(err) res.status(500).json(err)
+      res.status(200).json({ message: "Success Read Profile", data })
+    })
+  },
+  updateProfile: (req,res) => {
+    User.findOne({_id: req.user._id},function(err,data) {
+      if(err) return res.status(500).json({
+        message: "Something Went Wrong",
+        err
+        });
+        const  { name , description  } = req.body;
+        let input = { name, description };
+        User.findOneAndUpdate({_id:req.user._id},input,{ new: true},(err,data) => {
+          res.status(200).json({
+            message: "Success Update Profile",
+            data
+          });
+        });
+    })
+  },
 };
