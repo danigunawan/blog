@@ -9,6 +9,7 @@
         }"
         class="list-group-item list-group-item-action"
         v-for="article in searchArticle" :key="article._id"
+        @click.native="closeSearch"
       >
          <h2>{{ article.title }}</h2>
          <p v-html="article.text.substr(0,30)"></p>
