@@ -10,14 +10,16 @@
       </div>
     </div>
     <hr/>
-    <h3>Related Articles</h3>
+    <h3>Other Stories</h3>
     <div class="row">
       <div class="col-md-12">
+      <other-article></other-article>
       </div>
     </div>
   </div>
 </template>
 <script>
+import OtherArticle from '@/components/OtherArticle'
 export default {
   name: 'Article',
   data () {
@@ -28,12 +30,15 @@ export default {
   created () {
     this.fetchArticle()
   },
+  components: {
+    OtherArticle
+  },
   methods: {
     likeArticle () {
       const id = this.$route.params.id
       const app = this
       this.$http.get(`/api/articles/${id}/like`).then(res => {
-       app.article.likes  = res.data.data.likes 
+        app.article.likes = res.data.data.likes
       }).catch(err => {
         console.log(err)
       })
