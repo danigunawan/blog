@@ -19,25 +19,20 @@
   </div>
 </template>
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
   name: 'Articles',
   data () {
     return {
-      isLogin: false,
-      articles: []
+      isLogin: false
     }
   },
+  computed: mapState(['articles']),
   created () {
     this.fetchArticles()
   },
   methods: {
-    fetchArticles () {
-      this.$http.get('/api/articles').then(res => {
-        this.articles = res.data.data
-      }).catch(err => {
-        console.log(err)
-      })
-    }
+    ...mapActions(['fetchArticles'])
   }
 }
 </script>

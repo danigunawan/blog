@@ -2,6 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
+            <li class="breadcrumb-item active" aria-current="page">Story</li>
+          </ol>
+        </nav>
         <h5>Author: {{ article.user.name }}</h5>
         <h6>{{ article.createdAt }}</h6>
         <h1 class="text-center">{{article.title}}</h1>
@@ -10,12 +16,6 @@
       </div>
     </div>
     <hr/>
-    <h3>Other Stories</h3>
-    <div class="row">
-      <div class="col-md-12">
-      <other-article></other-article>
-      </div>
-    </div>
   </div>
 </template>
 <script>
