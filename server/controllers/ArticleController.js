@@ -77,6 +77,20 @@ module.exports = {
        }
     })
   },
+  addLike: (req,res) => {
+    Article.findOne({_id: req.params.id},function(err,data) {
+      if(err) return res.status(500).json({
+        message: "Something Went Wrong",
+        err
+        });
+        Article.findOneAndUpdate({_id:req.params.id},{likes: data.likes + 1},{ new: true},(err,data) => {
+          res.status(200).json({
+            message: "Success Add Like to Article",
+            data
+          });
+        });
+    })
+  },
   destroy: (req,res) => {
     Article.findOne({_id: req.params.id},function(err,data) {
       if(err) return res.status(500).json({

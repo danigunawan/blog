@@ -6,6 +6,7 @@
         <h6>{{ article.createdAt }}</h6>
         <h1 class="text-center">{{article.title}}</h1>
         <p v-html="article.text"></p>
+        <button class="btn btn-success" @click="likeArticle"><b>{{ article.likes }}</b> Like This <i class="far fa-thumbs-up"></i></button>
       </div>
     </div>
     <hr/>
@@ -28,6 +29,15 @@ export default {
     this.fetchArticle()
   },
   methods: {
+    likeArticle () {
+      const id = this.$route.params.id
+      const app = this
+      this.$http.get(`/api/articles/${id}/like`).then(res => {
+       app.article.likes  = res.data.data.likes 
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     fetchArticle () {
       const id = this.$route.params.id
       const app = this
@@ -46,5 +56,9 @@ export default {
 }
 h1 {
   font-weight: 1000;
+}
+p {
+  font-size: 20px;
+
 }
 </style>
