@@ -19,7 +19,6 @@
   </div>
 </template>
 <script>
-import OtherArticle from '@/components/OtherArticle'
 export default {
   name: 'Article',
   data () {
@@ -27,11 +26,8 @@ export default {
       article: null
     }
   },
-  created () {
+  mounted () {
     this.fetchArticle()
-  },
-  components: {
-    OtherArticle
   },
   methods: {
     likeArticle () {

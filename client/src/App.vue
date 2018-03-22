@@ -1,16 +1,32 @@
 <template>
   <div id="app">
-    <navbar></navbar>
-    <router-view/>
+    <navbar @search="getQuery" ></navbar>
+    <search :query="query" v-if="query" @close="closeSearch"></search>
+    <router-view v-if="!query"></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+import Search from '@/components/Search'
 export default {
   name: 'App',
+  data () {
+    return {
+      query: null
+    }
+  },
   components: {
-    Navbar
+    Navbar,
+    Search
+  },
+  methods: {
+    getQuery (payload) {
+      this.query = payload
+    },
+    closeSearch () {
+      this.query = null
+    }
   }
 }
 </script>

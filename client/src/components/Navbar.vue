@@ -21,8 +21,8 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" v-model="query" type="search" placeholder="Search" aria-label="Search">
+        <button  @click="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
@@ -33,13 +33,17 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      isLogin: false
+      isLogin: false,
+      query: null
     }
   },
   created () {
     this.checkLogin()
   },
   methods: {
+    search () {
+      this.$emit('search', this.query)
+    },
     checkLogin () {
       const token = localStorage.token
       if (token !== undefined) {
