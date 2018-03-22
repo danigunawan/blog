@@ -2,10 +2,17 @@
   <div>
     <h3>Author List</h3>
     <ul class="list-group list-group-flush">
-      <li :key="author._id" class="list-group-item" v-for="author in authors">
+      <router-link
+        :to="{
+          name: 'AuthorArticle',
+          params: { id: author._id }
+        }"
+        class="list-group-item list-group-item-action"
+        v-for="author in authors" :key="author._id"
+      >
          <h2>{{ author.name }}</h2>
          <h6>{{ author.description }}</h6>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>

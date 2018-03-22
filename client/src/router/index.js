@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Article from '@/components/Article'
+import AuthorArticle from '@/components/AuthorArticle'
 import MyStory from '@/components/MyStory'
 import CreateStory from '@/components/CreateStory'
 import EditStory from '@/components/EditStory'
@@ -24,6 +25,11 @@ export default new Router({
       path: '/articles/:id/edit',
       name: 'ArticleEdit',
       component: EditStory
+    },
+    {
+      path: '/articles/author/:id',
+      name: 'AuthorArticle',
+      component: AuthorArticle
     },
     {
       path: '/my-articles',

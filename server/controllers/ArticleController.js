@@ -31,6 +31,18 @@ module.exports = {
       console.log(err);
     })
   },
+  authorArticle: (req,res) => {
+    Article.find({user: req.params.id})
+    .populate('user')
+    .exec().then((data) => {
+      res.status(200).json({
+        message: "Success Read Author's Articles",
+        data
+      });
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
   myArticle: (req,res) => {
     Article.find({user: req.user._id})
     .populate('user')

@@ -45,6 +45,12 @@ module.exports = {
       res.status(200).json({ message: "Success Read Profile", data })
     })
   },
+  getSpecificProfile: function(req,res) {
+    User.findOne({_id: req.params.id},function(err,data) {
+      if(err) res.status(500).json(err)
+      res.status(200).json({ message: "Success Read Profile", data })
+    })
+  },
   getAllUser: function(req,res) {
     User.find({},function(err,data) {
       if(err) res.status(500).json(err)
