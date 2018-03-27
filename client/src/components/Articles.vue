@@ -1,6 +1,7 @@
 <template >
   <div>
     <h3>Story List</h3>
+    <spinner v-if="loading"></spinner>
     <ul class="list-group list-group-flush">
       <router-link
         :to="{
@@ -27,7 +28,7 @@ export default {
       isLogin: false
     }
   },
-  computed: mapState(['articles']),
+  computed: mapState(['articles', 'loading']),
   created () {
     this.fetchArticles()
   },

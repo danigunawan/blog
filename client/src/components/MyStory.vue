@@ -6,6 +6,7 @@
       <h5 v-else>No Description About The Author</h5>
       <button class="btn btn-success" @click="editProfile">Edit</button>
     </div>
+    <spinner v-if="loading"></spinner>
     <div v-if="isEdit">
       <div class="form-group">
         <label>Name</label>
@@ -51,7 +52,8 @@ export default {
         name: '',
         description: ''
       },
-      isEdit: false
+      isEdit: false,
+      loading: false
     }
   },
   created () {
@@ -68,8 +70,10 @@ export default {
     },
     saveProfile () {
       const app = this
+      app.loading = true
       this.$http.put('/users/profile', this.profileEdit, {headers: { token: localStorage.token }}).then(res => {
         app.profile = res.data.data
+        app.loading = false
         app.isEdit = false
       }).catch(err => {
         console.log(err)
@@ -80,16 +84,20 @@ export default {
     },
     fetchArticles () {
       const app = this
+      app.loading = true
       this.$http.get('/api/articles/me', {headers: { token: localStorage.token }}).then(res => {
         app.articles = res.data.data
+        app.loading = false
       }).catch(err => {
         console.log(err)
       })
     },
     getProfile () {
       const app = this
+      app.loading = true
       this.$http.get('/users/profile', {headers: { token: localStorage.token }}).then(res => {
         app.profile = res.data.data
+        app.loading = false
       }).catch(err => {
         console.log(err)
       })

@@ -1,6 +1,7 @@
 <template >
   <div>
     <h3>Author List</h3>
+    <spinner v-if="loading"></spinner>
     <ul class="list-group list-group-flush">
       <router-link
         :to="{
@@ -21,7 +22,8 @@ export default {
   name: 'Authors',
   data () {
     return {
-      authors: []
+      authors: [],
+      loading: false
     }
   },
   created () {
@@ -29,8 +31,10 @@ export default {
   },
   methods: {
     fetchAuthors () {
+      this.loading = true
       this.$http.get('/users').then(res => {
         this.authors = res.data.data
+        this.loading = false
       }).catch(err => {
         console.log(err)
       })

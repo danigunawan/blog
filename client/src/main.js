@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import store from './store'
+import Spinner from 'vue-simple-spinner'
 
 Vue.config.productionTip = false
-
+Vue.component('spinner', Spinner)
 let host = 'http://localhost:3000'
 const hostname = document.location.hostname
 if (hostname !== 'localhost') {

@@ -14,6 +14,7 @@
           <vue-editor v-model="article.text"></vue-editor>
         </div>
         <button @click="submitArticle" class="btn btn-success btn-block">Save</button>
+        <spinner v-if="loading"></spinner>
       </div>
     </div>
   </div>
@@ -33,15 +34,18 @@ export default {
       },
       show: false,
       alert: null,
-      alert_message: null
+      alert_message: null,
+      loading: false
     }
   },
   methods: {
     submitArticle () {
       const app = this
+      app.loading = true
       if (app.validateForm()) {
         this.$http.post('/api/articles', this.article, { headers: { token: localStorage.token } }).then(res => {
           app.show = true
+          app.loading = false
           app.alert = 'alert alert-success'
           this.alert_message = '<b>Success</b> Create New Article'
           app.article.title = ''
