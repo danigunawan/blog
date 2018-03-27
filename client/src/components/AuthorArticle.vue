@@ -6,7 +6,7 @@
       <h5 v-else>No Description About The Author</h5>
     </div>
     <hr/>
-    <h3>My Story </h3>
+    <h3>Author Story </h3>
     <ul class="list-group list-group-flush">
       <router-link
         :to="{
