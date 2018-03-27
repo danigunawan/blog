@@ -9,7 +9,7 @@
           </ol>
         </nav>
         <h5>Author: {{ article.user.name }}</h5>
-        <spinner v-if="loading" ></spinner>
+        <spinner v-if="loading" message="Loading Story..."></spinner>
         <h6>{{ article.createdAt }}</h6>
         <h1 class="text-center">{{article.title}}</h1>
         <p v-html="article.text"></p>
@@ -35,10 +35,8 @@ export default {
     likeArticle () {
       const id = this.$route.params.id
       const app = this
-      app.loading = true
       this.$http.get(`/api/articles/${id}/like`).then(res => {
         app.article.likes = res.data.data.likes
-        app.loading = false
       }).catch(err => {
         console.log(err)
       })
@@ -46,7 +44,9 @@ export default {
     fetchArticle () {
       const id = this.$route.params.id
       const app = this
+      app.loading = true
       this.$http.get(`/api/articles/${id}`).then(res => {
+        app.loading = false
         app.article = res.data.data
       }).catch(err => {
         console.log(err)
