@@ -9,6 +9,7 @@
           </ol>
         </nav>
         <h5>Author: {{ article.user.name }}</h5>
+        <spinner v-if="loading" ></spinner>
         <h6>{{ article.createdAt }}</h6>
         <h1 class="text-center">{{article.title}}</h1>
         <p v-html="article.text"></p>
@@ -23,7 +24,8 @@ export default {
   name: 'Article',
   data () {
     return {
-      article: null
+      article: null,
+      loading: false
     }
   },
   mounted () {
@@ -33,8 +35,10 @@ export default {
     likeArticle () {
       const id = this.$route.params.id
       const app = this
+      app.loading = true
       this.$http.get(`/api/articles/${id}/like`).then(res => {
         app.article.likes = res.data.data.likes
+        app.loading = false
       }).catch(err => {
         console.log(err)
       })
